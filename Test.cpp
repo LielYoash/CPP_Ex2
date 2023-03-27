@@ -15,10 +15,10 @@ TEST_CASE("Test 1 - Initialization")
 
     Game game(p1, p2);
 
-    CHECK(p1.numberOfCardsInStack() == 26);
-    CHECK(p2.numberOfCardsInStack() == 26);
-    CHECK(p1.numberOfCardsTaken() == 0);
-    CHECK(p2.numberOfCardsTaken() == 0);
+    CHECK(p1.stacksize() == 26);
+    CHECK(p2.stacksize() == 26);
+    CHECK(p1.cardesTaken() == 0);
+    CHECK(p2.cardesTaken() == 0);
 }
 TEST_CASE("Test 2 - cards")
 {
@@ -28,13 +28,13 @@ TEST_CASE("Test 2 - cards")
     Card c4(8, "Clubs");
     Card c5(5, "Spades");
     Card c6(7, "Hearts");
-    CHECK(c1.getCardValue() == 1);
-    CHECK(c1.getCardType() == "Spades");
-    CHECK(c1.compareCards(c1) == 0);
-    CHECK(c6.compareCards(c2) == -1);
-    CHECK(c5.compareCards(c1) == 1);
-    CHECK(c2.getCardValue() == 10);
-    CHECK(c2.getCardType() == "Hearts");
+    CHECK(c1.compareto(c1) == 0);
+    CHECK(c6.compareto(c2) == -1);
+    CHECK(c5.compareto(c1) == 1);
+    CHECK(c3.compareto(c4) == -1);
+    CHECK(c4.compareto(c3) == 1);
+    CHECK(c2.compareto(c6) == 1);
+    CHECK(c6.compareto(c6) == 0);
 }
 
 TEST_CASE("Test 3 - players")
@@ -43,17 +43,14 @@ TEST_CASE("Test 3 - players")
     Player p2("Bob");
     Card c1(1, "Spades");
     Card c2(10, "Hearts");
-    CHECK(p1.numberOfCardsInStack() == 26);
-    CHECK(p1.numberOfCardsTaken() == 0);
-    CHECK(p1.addCard(c1) == 0);
-    CHECK(p2.addCard(c2) == 0);
-    CHECK(p1.numberOfCardsInStack() == 27);
-    CHECK(p1.numberOfCardsTaken() == 28);
-    CHECK(p1.removeCard(c1) == 0);
-    CHECK(p1.numberOfCardsInStack() == 26);
-    CHECK(p1.numberOfCardsTaken() == 26);
-    CHECK(p2.numberOfCardsInStack() == 26);
-    CHECK(p2.numberOfCardsTaken() == 27);
+    CHECK(p1.stacksize() == 26);
+    CHECK(p1.cardesTaken() == 0);
+    p1.addCard(c1);
+    p2.addCard(c2);
+    CHECK(p1.stacksize() == 27);
+    CHECK(p1.cardesTaken() == 28);
+    CHECK(p2.stacksize() == 26);
+    CHECK(p2.cardesTaken() == 27);
 }
 
 TEST_CASE("Test 4 - game")
@@ -68,8 +65,8 @@ TEST_CASE("Test 4 - game")
     Card c6(5, "Hearts");
     Card c7(10, "Spades");
     Card c8(7, "Hearts");
-    Game g1(p1, p2);
-    CHECK(g1.printGameWinner() == "No winner yet");
+    Game game(p1, p2);
+    CHECK(game.printWiner() == "No winner yet");
     p1.addCard(c1);
     p1.addCard(c2);
     p1.addCard(c3);
@@ -78,31 +75,31 @@ TEST_CASE("Test 4 - game")
     p2.addCard(c6);
     p2.addCard(c7);
     p2.addCard(c8);
-    g1.play();
-    string s = g1.printLastTurn();
+    game.playTurn();
+    string s = game.printLastTurn();
     CHECK(s == "Alice played 2 Spades, Bob played 1 Clubs");
-    CHECK(p1.numberOfCardsTaken() == 1);
-    CHECK(p2.numberOfCardsInStack() == 25);
+    CHECK(p1.cardesTaken() == 1);
+    CHECK(p2.stacksize() == 25);
 
-    g1.playAllTurns();
-    if (p1.numberOfCardsInStack() == 0)
+    game.playAll();
+    if (p1.stacksize() == 0)
     {
-        CHECK(g1.printGameWinner() == "Bob");
-        string winner = g1.printGameWinner();
+        CHECK(game.printWiner() == "Bob");
+        string winner = game.printWiner();
     }
-    else if (p2.numberOfCardsInStack() == 0)
+    else if (p2.stacksize() == 0)
     {
-        CHECK(g1.printGameWinner() == "Alice");
-        string winner = g1.printGameWinner();
+        CHECK(game.printWiner() == "Alice");
+        string winner = game.printWiner();
     }
     else
     {
-        CHECK(g1.printGameWinner() == "No winner yet");
+        CHECK(game.printWiner() == "No winner yet");
     }
     
 
-    CHECK(p1.numberOfCardsTaken() >= 26);
-    CHECK(p1.numberOfCardsInStack() ==52);
-    CHECK(p2.numberOfCardsInStack() == 0);
+    CHECK(p1.cardesTaken() >= 26);
+    CHECK(p1.stacksize() ==52);
+    CHECK(p2.stacksize() == 0);
 
 }

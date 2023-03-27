@@ -9,15 +9,13 @@ Game::Game(Player p1, Player p2)
     this->player2 = p2;
 };
 
-void Game::play(){};
+void Game::playTurn(){};
 
-string Game::printGameStats(){return ""};
+string Game::printStats(){return ""};
 
-string Game::printGameWinner(){return ""};
+string Game::printWiner(){return ""};
 
-string Game::printGameLog(){return ""};
-
-string Game::printLastPlayer(){return ""};
+string Game::printLog(){return ""};
 
 string Game::printLastTurn(){return ""};
 

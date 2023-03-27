@@ -1,28 +1,13 @@
 #include "card.hpp"
 using namespace ariel;
 
-string type;
-int value;
-
 Card::Card(int value, string type)
 {
     this->value = value;
     this->type = type;
 };
 
-int Card::getCardValue()
+int Card::compareto(Card card)
 {
-    return this->value;
+    return 0;
 };
-
-int Card::getCardType()
-{
-    return this->type;
-};
-
-int Card::compareCards(Card card)
-{
-   return 0;
-};
-
-

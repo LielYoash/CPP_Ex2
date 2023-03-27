@@ -14,9 +14,8 @@ class Player
     public:
         Player(string name);
         void addCard(Card card);
-        void removeCard(Card card);
-        int numberOfCardsInStack();
-        int numberOfCardsTaken();
+        int stacksize();
+        int cardesTaken();
 };
 
 #endif /* Player_hpp */

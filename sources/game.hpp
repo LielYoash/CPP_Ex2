@@ -14,13 +14,12 @@ class Game
 {
     public:
         Game(Player p1, Player p2);
-        void play();
-        string printGameStats();
-        string printGameWinner();
-        string printGameLog();
-        string printLastPlayer();
+        void playTurn();
+        string printStats();
+        string printWiner();
+        string printLog();
         string printLastTurn();
-        void playAllTurns();
+        void playAll();
 };
 
 #endif /* Game_hpp */

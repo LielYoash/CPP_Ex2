@@ -6,8 +6,6 @@ Player::Player(string name){};
 
 void player::addCard(Card card){};
 
-void player::removeCard(Card card){};
+int player::cardesTaken(){return 0;};
 
-int player::numberOfCardsTaken(){return 0;};
-
-int player:: numberOfCardsInStack(){return 0;};
+int player:: stacksize(){return 0;};

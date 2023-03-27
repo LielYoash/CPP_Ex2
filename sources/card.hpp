@@ -11,15 +11,9 @@ namespace ariel
 {
     class Card
     {
-    private:
-        string type;
-        int value;
-
     public:
         Card(int value, string type);
-        int compareCards(Card card);
-        int getCardValue();
-        string getCardType();
+        int compareto(Card card);
     };
 }
 #endif /* Card_hpp */
