@@ -102,7 +102,7 @@ TEST_CASE("Test 4 - game")
     
 
     CHECK(p1.numberOfCardsTaken() >= 26);
-    CHECK(p1.numberOfCardsInStack ==52);
+    CHECK(p1.numberOfCardsInStack() ==52);
     CHECK(p2.numberOfCardsInStack() == 0);
 
 }
