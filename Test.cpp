@@ -17,8 +17,8 @@ TEST_CASE("Test 1 - Initialization")
 
     CHECK(p1.numberOfCardsInStack() == 26);
     CHECK(p2.numberOfCardsInStack() == 26);
-    CHECK(p1.numberOfCardsInHand() == 0);
-    CHECK(p2.numberOfCardsInHand() == 0);
+    CHECK(p1.numberOfCardsTaken() == 0);
+    CHECK(p2.numberOfCardsTaken() == 0);
 }
 TEST_CASE("Test 2 - cards")
 {
@@ -84,7 +84,7 @@ TEST_CASE("Test 4 - game")
     CHECK(p1.numberOfCardsTaken() == 1);
     CHECK(p2.numberOfCardsInStack() == 25);
 
-    game.playAllTurns();
+    g1.playAllTurns();
     if (p1.numberOfCardsInStack() == 0)
     {
         CHECK(g1.printGameWinner() == "Bob");
