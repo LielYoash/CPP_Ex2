@@ -3,20 +3,16 @@
 #include "card.hpp"
 using namespace ariel;
 
-Game::Game(Player p1, Player p2)
-{
-    this->player1 = p1;
-    this->player2 = p2;
-};
+Game::Game(Player p1, Player p2){};
 
 void Game::playTurn(){};
 
-string Game::printStats(){return ""};
+string Game::printStats(){return "";};
 
-string Game::printWiner(){return ""};
+string Game::printWiner(){return "";};
 
-string Game::printLog(){return ""};
+string Game::printLog(){return "";};
 
-string Game::printLastTurn(){return ""};
+string Game::printLastTurn(){return "";};
 
 void Game::playAll(){};
